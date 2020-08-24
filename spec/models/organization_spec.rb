@@ -1,10 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Organization, type: :model do
-  it 'is valid with valid attributes'
-  it 'is not valid without a name'
-  it 'is not valid without a type'
-  it 'is not valid without a pricing_policy'
+  subject { build(:organization) }
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+  
+  it 'is not valid without a name' do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
+  
+  it 'is not valid without a type' do
+    subject.company_type = nil
+    expect(subject).to_not be_valid
+  end
+  
+  it 'is not valid without a pricing_policy' do
+    subject.pricing_policy = nil 
+    expect(subject).to_not be_valid
+  end
 
   describe 'Associations' do
     it { is_expected.to belong_to(:group_organization) }

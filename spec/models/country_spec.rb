@@ -1,9 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe Country, type: :model do
-  it 'is valid with valid attributes'
-  it 'is not valid without a name'
-  it 'is not valid without a country code'
+  subject { build(:country) }
+
+  it 'is valid with valid attributes' do
+    expect(subject).to be_valid
+  end
+
+  it "is not valid without a name" do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
+
+  it "is not valid without a country code" do
+    subject.country_code = nil
+    expect(subject).to_not be_valid
+  end
 
   describe 'Associations' do
     it { is_expected.to have_many(:group_organizations) }
