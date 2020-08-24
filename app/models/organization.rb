@@ -6,4 +6,6 @@ class Organization < ApplicationRecord
                    dependent: :destroy,
                    inverse_of: :parent
   has_many :locations, dependent: :destroy
+
+  validates_presence_of :name, :company_type, :pricing_policy
 end
