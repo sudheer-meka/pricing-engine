@@ -8,4 +8,13 @@ class Organization < ApplicationRecord
   has_many :locations, dependent: :destroy
 
   validates_presence_of :name, :company_type, :pricing_policy
+
+
+  def margin_price
+    price_calculator.price
+  end
+
+  def price_calculator
+    MarginPriceCalculator.new(pricing_policy)
+  end
 end
