@@ -1,4 +1,4 @@
-class Parsers::HtmlParser < Parsers::Base 
+class Parsers::HtmlParser < Parsers::Base
   def fallback
     clean_content.scan(settings[:match]).count
   end

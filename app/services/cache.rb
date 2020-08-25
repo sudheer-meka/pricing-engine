@@ -4,7 +4,7 @@ class Cache
   @@cached_data = {}
 
   def self.get(key)
-    return cached_data[key][:value] if cached_data.has_key?(key) && !expired?(key)
+    return cached_data[key][:value] if cached_data.key?(key) && !expired?(key)
 
     set(key, yield) if block_given?
   end
@@ -12,13 +12,13 @@ class Cache
   def self.set(key, value)
     cached_data[key] = {
       value: value,
-      time: Time.now + cache_time
+      time: Time.zone.now + cache_time
     }
     value
   end
 
   def self.expired?(key)
-    cached_data.dig(key, :time) < Time.now 
+    cached_data.dig(key, :time) < Time.zone.now
   end
 
   def self.clear

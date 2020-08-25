@@ -30,7 +30,7 @@ RSpec.describe GroupOrganization, type: :model do
 
     context 'executes methods correctly' do
       context 'model_type_prices' do
-        it "resturns margin price + base price given" do
+        it 'resturns margin price + base price given' do
           organization = create(:organization)
           group_organization = organization.group_organization
           organization.stub(:margin_price).and_return(100)

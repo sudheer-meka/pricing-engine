@@ -7,8 +7,7 @@ class Organization < ApplicationRecord
                    inverse_of: :parent
   has_many :locations, dependent: :destroy
 
-  validates_presence_of :name, :company_type, :pricing_policy
-
+  validates :name, :company_type, :pricing_policy, presence: true
 
   def margin_price
     price_calculator.price

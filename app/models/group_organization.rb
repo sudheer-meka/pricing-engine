@@ -3,7 +3,7 @@ class GroupOrganization < ApplicationRecord
   has_many :organizations, dependent: :destroy
   has_many :locations, through: :organizations
 
-  validates_presence_of :name, :organization_code
+  validates :name, :organization_code, presence: true
 
   def model_type_prices(data)
     organizations_by_type(data[:model_type_name]).map do |organization|

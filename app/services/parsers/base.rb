@@ -1,13 +1,13 @@
-class Parsers::Base 
+class Parsers::Base
   require 'open-uri'
   attr_reader :settings
-  
+
   def initialize(settings)
     @settings = settings
     super()
   end
 
-  def keyword_count
+  def fallback
     raise NotImplementedError
   end
 

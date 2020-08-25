@@ -37,13 +37,13 @@ RSpec.describe Organization, type: :model do
 
     context 'executes methods correctly' do
       context 'price_calculator' do
-        it "returns margin price calulator instance" do
+        it 'returns margin price calulator instance' do
           expect(subject.price_calculator).to be_a MarginPriceCalculator
         end
       end
 
       context 'margin_price' do
-        it "returns margin price" do
+        it 'returns margin price' do
           price_calculator = subject.price_calculator
           price_calculator.stub(:price).and_return(100)
           subject.stub(:price_calculator).and_return(price_calculator)
