@@ -14,4 +14,8 @@ class Parsers::Base
   def cache_key
     "#{settings[:url]} - #{settings[:match]}"
   end
+
+  def keyword_count
+    Cache.get(cache_key) { fallback }
+  end
 end

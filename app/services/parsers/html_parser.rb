@@ -1,8 +1,4 @@
 class Parsers::HtmlParser < Parsers::Base 
-  def keyword_count
-    Cache.get(cache_key) { fallback }
-  end
-
   def fallback
     clean_content.scan(settings[:match]).count
   end
