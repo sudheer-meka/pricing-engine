@@ -20,14 +20,16 @@ def create_group_organizations(country)
 end
 
 
-def create_organizations(group_organization)
+def create_organizations(group_organization, parent_id = nil)
   5.times do
     organization = group_organization.organizations.create(
       name: Faker::Company.name,
       public_name: Faker::Company.name,
       company_type: ["Show room", "Service", "Dealer"].sample,
-      pricing_policy: ["Flexible", "Fixed", "Prestige"].sample
+      pricing_policy: ["Flexible", "Fixed", "Prestige"].sample,
+      parent_id: parent_id
     )
+    create_organizations(group_organization, organization.id) unless parent_id
     create_locations(organization)
   end
 end
